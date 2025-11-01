@@ -1,4 +1,4 @@
-module github.com/ali63yavari/outbox-abstraction.git
+module github.com/ali63yavari/outbox-abstraction
 
 go 1.23.12
 
