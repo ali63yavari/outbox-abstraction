@@ -5,12 +5,13 @@ Core interfaces and types for the Outbox Pattern implementation.
 ## Installation
 
 ```bash
-go get github.com/arash/outbox-abstraction
+go get github.com/ali63yavari/outbox-abstraction
 ```
+
 ## Usage
 
 ```go
-import "github.com/arash/outbox-abstraction/abstraction"
+import "github.com/ali63yavari/outbox-abstraction/abstraction"
 
 // Create event
 event := abstraction.CreateNewEvent(...)
@@ -18,10 +19,11 @@ event := abstraction.CreateNewEvent(...)
 // Create manager
 manager := abstraction.NewOutboxEventManager()
 ```
+
 ## Implementations
 
-- [PostgreSQL](https://github.com/arash/outbox-pgsql) - Official implementation
-- [NATS](https://github.com/arash/outbox-nats) - Community implementation
+- [PostgreSQL](https://github.com/ali63yavari/outbox-pgsql) - Official implementation
+- [NATS](https://github.com/ali63yavari/outbox-nats) - Community implementation
 - See [EXTENSION_GUIDE.md](EXTENSION_GUIDE.md) for creating your own
 
 ## Documentation

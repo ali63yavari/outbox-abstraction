@@ -10,7 +10,7 @@ The abstraction/implementation separation provides:
 ✅ **Open/Closed Principle** - Open for extension, closed for modification  
 ✅ **Easy Testing** - Mock implementations for testing  
 ✅ **Pluggable** - Switch implementations without changing business logic  
-✅ **No Vendor Lock-in** - Not tied to specific technology  
+✅ **No Vendor Lock-in** - Not tied to specific technology
 
 ## Creating a New Implementation
 
@@ -31,11 +31,11 @@ module outbox_uow_nats
 go 1.23
 
 require (
-    github.com/arash/outbox_abstraction v0.0.0
+    github.com/ali63yavari/outbox-abstraction v0.0.0
     github.com/nats-io/nats.go v1.31.0
 )
 
-replace github.com/arash/outbox_abstraction => ../outbox_uow_abstraction
+replace github.com/ali63yavari/outbox-abstraction => ../outbox_uow_abstraction
 ```
 
 ### Step 3: Implement the Interface
@@ -50,7 +50,7 @@ import (
     "log"
     "time"
 
-    "github.com/arash/outbox_abstraction/abstraction"
+    "github.com/ali63yavari/outbox-abstraction/abstraction"
     "github.com/nats-io/nats.go"
 )
 
@@ -104,7 +104,7 @@ func (c *NatsEventChannel) Close() error {
 package main
 
 import (
-    "github.com/arash/outbox_abstraction/abstraction"
+    "github.com/ali63yavari/outbox-abstraction/abstraction"
     "outbox_uow_nats/nats_channel"
 )
 
@@ -155,7 +155,7 @@ import (
     "context"
     "encoding/json"
 
-    "github.com/arash/outbox_abstraction/abstraction"
+    "github.com/ali63yavari/outbox-abstraction/abstraction"
     "github.com/redis/go-redis/v9"
 )
 
@@ -210,7 +210,7 @@ package kafkachannel
 import (
     "encoding/json"
 
-    "github.com/arash/outbox_abstraction/abstraction"
+    "github.com/ali63yavari/outbox-abstraction/abstraction"
     "github.com/segmentio/kafka-go"
 )
 
@@ -302,7 +302,7 @@ package natschannel
 
 import (
     "testing"
-    "github.com/arash/outbox_abstraction/abstraction"
+    "github.com/ali63yavari/outbox-abstraction/abstraction"
     "github.com/nats-io/nats-server/v2/server"
     "github.com/nats-io/nats.go"
 )
@@ -459,4 +459,4 @@ Your abstraction is **excellent** because:
 ✅ Easy to migrate (swap implementations)  
 ✅ Technology agnostic  
 ✅ No vendor lock-in  
-✅ Supports mixed strategies  
+✅ Supports mixed strategies

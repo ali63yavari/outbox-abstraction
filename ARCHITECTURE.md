@@ -13,7 +13,7 @@ Visual guide to the Outbox Pattern abstraction/implementation separation.
                        ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                  Abstraction Layer                          │
-│         (github.com/arash/outbox_abstraction)               │
+│         (github.com/ali63yavari/outbox-abstraction)               │
 │                                                             │
 │  ┌────────────────────────────────────────────────────┐     │
 │  │ OutboxEvent         - Core event structure         │     │
@@ -55,7 +55,7 @@ type OutboxEventChannel interface {
                 │           │           │           │
                 ▼           ▼           ▼           ▼
         PgSqlChannel  NatsChannel  RedisChannel  KafkaChannel
-        
+
         Each implements the same interface differently!
 ```
 
@@ -235,10 +235,10 @@ type OrderService struct {
 func (s *OrderService) CreateOrder(order Order) error {
     // Save order
     s.db.Create(&order)
-    
+
     // Publish event - HARDCODED to PostgreSQL
     s.db.Create(&PostgresEvent{...})  // Can't change this easily!
-    
+
     return nil
 }
 
@@ -260,11 +260,11 @@ type OrderService struct {
 func (s *OrderService) CreateOrder(order Order) error {
     // Save order
     // ...
-    
+
     // Publish event - works with ANY implementation
     channel, _ := s.eventManager.GetChannel(OrderPlaced{})
     channel.RegisterEvent(event)  // PostgreSQL? NATS? Redis? Don't care!
-    
+
     return nil
 }
 
@@ -281,17 +281,17 @@ func (s *OrderService) CreateOrder(order Order) error {
 func TestOrderService_CreateOrder(t *testing.T) {
     // Create mock channel
     mockChannel := &MockChannel{events: []OutboxEvent{}}
-    
+
     // Create manager
     manager := abstraction.NewOutboxEventManager()
     manager.RegisterEventChannel(OrderPlaced{}, mockChannel)
-    
+
     // Create service
     service := NewOrderService(manager)
-    
+
     // Test
     service.CreateOrder(order)
-    
+
     // Verify event was published
     if len(mockChannel.events) != 1 {
         t.Error("Event not published")
@@ -306,11 +306,11 @@ func TestPgSqlChannel_Integration(t *testing.T) {
     // Use real PostgreSQL
     db := setupTestDB()
     channel := pgsqlchannel.NewPgSqlEventChannel(db, ...)
-    
+
     // Test
     event := abstraction.CreateNewEvent(...)
     err := channel.RegisterEvent(event)
-    
+
     // Verify in database
     var count int64
     db.Model(&EventModel{}).Count(&count)
