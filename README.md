@@ -24,7 +24,7 @@ manager := abstraction.NewOutboxEventManager()
 
 - [PostgreSQL](https://github.com/ali63yavari/outbox-pgsql) - Official implementation
 - [NATS](https://github.com/ali63yavari/outbox-nats) - Community implementation
-- See [EXTENSION_GUIDE](EXTENSION_GUIDE.md) for creating your own
+- See [EXTENSION_GUIDE.md](EXTENSION_GUIDE.md) for creating your own
 
 ## Documentation
 
